@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OMEGA // Neural Command System</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="scanlines"></div>
+<div id="particles"></div>
+
+<header class="topbar">
+    <div class="brand">
+        <div class="brand-mark">Ω</div>
+        <div>
+            <div class="brand-name">OMEGA</div>
+            <div class="brand-sub">
+                NEURAL COMMAND SYSTEM
+            </div>
+        </div>
+    </div>
+
+    <nav class="nav">
+        <button class="nav-btn active" data-section="command">COMMAND</button>
+        <button class="nav-btn" data-section="systems">SYSTEMS</button>
+        <button class="nav-btn" data-section="network">NETWORK</button>
+        <button class="nav-btn" data-section="logs">LOGS</button>
+    </nav>
+
+    <div class="top-status">
+        <span class="live-dot"></span>
+        <span>LOCAL LINK</span>
+        <span class="divider"></span>
+        <span id="clock">00:00:00</span>
+    </div>
+</header>
+
+<main class="dashboard">
+    <aside class="left-panel glass">
+        <div class="panel-title">
+            <span>CONVERSATION LOG</span>
+            <button id="clearLog" class="mini-btn">CLEAR</button>
+        </div>
+        <div id="log" class="log">
+            <div class="log-entry system">
+                <span class="stamp">OMEGA</span>
+                <p>Neural interface initialized. Awaiting command.</p>
+            </div>
+        </div>
+        <div class="left-footer">
+            <span>ENCRYPTION: ACTIVE</span>
+            <span>SESSION: <b id="sessionId">OM-0000</b></span>
+        </div>
+    </aside>
+
+    <section class="core-section">
+        <div class="system-label">OMEGA // CORE ONLINE</div>
+        <div class="core-wrap">
+            <div class="orbit orbit-a"></div>
+            <div class="orbit orbit-b"></div>
+            <div class="orbit orbit-c"></div>
+            <div class="ring ring-outer"></div>
+            <div class="ring ring-mid"></div>
+            <div class="ring ring-inner"></div>
+            <div class="core-glow"></div>
+            <div class="core-symbol">Ω</div>
+            <div class="core-status">
+                <span class="pulse"></span>
+                <span id="coreState">STANDBY</span>
+            </div>
+        </div>
+
+        <div class="waveform" id="waveform"></div>
+
+        <div class="command-box glass">
+            <button id="micBtn" class="round-btn" type="button" aria-label="Start voice input" title="Start voice input">◉</button>
+            <input id="commandInput" type="text" autocomplete="off" placeholder="Enter a command to OMEGA...">
+            <button id="sendBtn" class="send-btn" type="button">EXECUTE ↗</button>
+        </div>
+
+        <div class="voice-controls">
+            <label class="voice-toggle">
+                <input id="voiceOutput" type="checkbox" checked>
+                <span>VOICE OUTPUT</span>
+            </label>
+            <span id="voiceStatus">VOICE READY</span>
+        </div>
+
+        <div class="quick-actions">
+            <button data-command="System status">SYSTEM STATUS</button>
+            <button data-command="Run diagnostics">DIAGNOSTICS</button>
+            <button data-command="Scan network">NETWORK SCAN</button>
+            <button data-command="Open terminal">TERMINAL</button>
+            <button data-command="Time">TIME</button>
+        </div>
+
+        <div class="metrics">
+            <div><span>CORE LOAD</span><b id="coreLoad">12%</b></div>
+            <div><span>MEMORY</span><b id="memory">34%</b></div>
+            <div><span>LATENCY</span><b id="latency">8 ms</b></div>
+            <div><span>UPTIME</span><b id="uptime">00:00:00</b></div>
+        </div>
+    </section>
+
+    <aside class="right-panel">
+        <div class="hex-card glass">
+            <div class="hex-inner">
+                <span class="card-kicker">SYS STATUS</span>
+                <div class="status-big"><span class="status-dot"></span> ONLINE</div>
+                <div class="stat-row"><span>CPU</span><b id="cpu">18%</b></div>
+                <div class="stat-row"><span>RAM</span><b id="ram">42%</b></div>
+                <div class="stat-row"><span>NET</span><b id="net">1.2 Gb/s</b></div>
+            </div>
+        </div>
+
+        <div class="hex-card glass">
+            <div class="hex-inner">
+                <span class="card-kicker">AI ENGINE</span>
+                <div class="engine-name">OMEGA-CORE <small>v4.7</small></div>
+                <div class="bar"><i id="engineBar"></i></div>
+                <div class="stat-row"><span>PROCESS</span><b id="process">STANDBY</b></div>
+                <div class="stat-row"><span>MODE</span><b>ADAPTIVE</b></div>
+            </div>
+        </div>
+
+        <div class="side-card glass">
+            <div class="panel-title">
+                <span>ACTIVE MODULES</span>
+                <span class="tiny-live">● 07</span>
+            </div>
+            <div class="modules">
+                <div><i></i> VOICE RECOGNITION <b>READY</b></div>
+                <div><i></i> NEURAL ENGINE <b>READY</b></div>
+                <div><i></i> SYSTEM MONITOR <b>ACTIVE</b></div>
+                <div><i></i> COMMAND ROUTER <b>READY</b></div>
+                <div><i></i> LOCAL STORAGE <b>ACTIVE</b></div>
+            </div>
+        </div>
+
+        <div class="side-card glass">
+            <div class="panel-title">
+                <span>NETWORK MATRIX</span>
+                <span>SECURE</span>
+            </div>
+            <div class="matrix" id="matrix"></div>
+        </div>
+    </aside>
+
+    <section class="secondary-section hidden" id="systems">
+        <div class="section-heading">SYSTEM TELEMETRY <span>LIVE</span></div>
+        <div class="telemetry-grid">
+            <div class="telemetry glass">
+                <label>CPU UTILIZATION</label>
+                <strong id="cpuLarge">18%</strong>
+                <div class="bar"><i id="cpuBar"></i></div>
+            </div>
+            <div class="telemetry glass">
+                <label>MEMORY UTILIZATION</label>
+                <strong id="ramLarge">42%</strong>
+                <div class="bar"><i id="ramBar"></i></div>
+            </div>
+            <div class="telemetry glass">
+                <label>NETWORK THROUGHPUT</label>
+                <strong id="netLarge">1.2 Gb/s</strong>
+                <div class="bar"><i id="netBar"></i></div>
+            </div>
+            <div class="telemetry glass">
+                <label>THERMAL CORE</label>
+                <strong id="tempLarge">41°C</strong>
+                <div class="bar"><i id="tempBar"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="secondary-section hidden" id="network">
+        <div class="section-heading">NETWORK MATRIX <span>ENCRYPTED</span></div>
+        <div class="network-view glass">
+            <div class="radar">
+                <div class="radar-sweep"></div>
+                <div class="radar-center"></div>
+            </div>
+            <div class="network-list">
+                <div><span>LOCALHOST</span><b>127.0.0.1</b><i>SECURE</i></div>
+                <div><span>GATEWAY</span><b>LOCAL ROUTER</b><i>ACTIVE</i></div>
+                <div><span>DNS</span><b>AUTO</b><i>SECURE</i></div>
+                <div><span>FIREWALL</span><b>ENABLED</b><i>LOCKED</i></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="secondary-section hidden" id="logs">
+        <div class="section-heading">EVENT ARCHIVE <span id="archiveCount">01 EVENTS</span></div>
+        <div class="archive glass" id="archive"></div>
+    </section>
+</main>
+
+<footer class="footer">
+    <span>OMEGA // PERSONAL AI INTERFACE</span>
+    <span>ALL SYSTEMS NOMINAL</span>
+    <span>LOCAL MODE • VOICE + FASTAPI BACKEND</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
